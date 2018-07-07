@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Exercise1
 {
@@ -35,22 +34,5 @@ namespace Exercise1
 		{
 			return str[str.Length - 1];
 		}
-
-        public static string MuffinReverse(this string str)
-        {
-            List<String> lTempStr = new List<String>();
-            if (str == "")
-            {
-                return "";
-            }
-            else
-            {
-                for (int i = 1; i <= str.Length; i++)
-                {
-                    lTempStr.Add(str.Substring(str.Length - i, 1));
-                }
-                return String.Join("", lTempStr);
-            }
-        }
     }
 }
