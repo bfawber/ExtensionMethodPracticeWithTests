@@ -39,7 +39,7 @@ namespace Exercise1
         public static string MuffinReverse(this string str)
         {
             List<String> lTempStr = new List<String>();
-            if (str == "")
+            if (String.IsNullOrEmpty(str))
             {
                 return "";
             }

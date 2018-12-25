@@ -48,7 +48,8 @@ namespace Tests
 	{
         [Theory]
         [InlineData("")]
-        public void ZeroCase(string value)
+		[InlineData(null)]
+		public void ZeroNullCase(string value)
         {
             Assert.True(value.MuffinReverse() == "");
         }
@@ -56,30 +57,35 @@ namespace Tests
         [Fact]
         public void PassingTest()
         {
-            string sTestString = "food\"porn";
-            Console.WriteLine(sTestString.MuffinReverse());
-            Assert.Equal("nrop\"doof",sTestString.MuffinReverse());
-        }
+			string sTestString = DateTime.Now.ToString();
+			string tempValue = sTestString.MuffinReverse();
+			Console.WriteLine(tempValue);
+
+			for (int i = 1; i <= tempValue.Length; i++)
+			{
+				Assert.Equal(sTestString[i - 1], tempValue[tempValue.Length - i]);
+			}
+		}
 
         [Theory]
-        [InlineData(null)]
-        public void Explode(string value)
+		[InlineData("                                ")]
+		public void JustSpaceCase(string value)
         {
-          
-            Assert.Null(value.MuffinReverse());
-        }
+			Assert.True(value.MuffinReverse() == "                                ");
+		}
 
         [Fact]
-        public void EdgeCase1()
+        public void SpecialCaracterCase()
         {
-            Assert.True(true);
-        }
+			string sTestString = "\'\"\\\0\a\b\f\n\r\t\v\u1234";
+			string tempValue = sTestString.MuffinReverse();
+			Console.WriteLine(tempValue);
 
-        [Fact]
-        public void EdgeCase2()
-        {
-            Assert.True(true);
-        }
+			for (int i = 1; i <= tempValue.Length; i++)
+			{
+				Assert.Equal(sTestString[i - 1], tempValue[tempValue.Length - i]);
+			}
+		}
 
         [Fact]
         public void EdgeCase3()
